@@ -1,0 +1,113 @@
+syntax = "proto2";
+
+option java_package = "ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated";
+option java_outer_classname = "IndexCoprocessorInMem";
+option java_generate_equals_and_hash = true;
+option java_generic_services = true;
+option optimize_for = SPEED;
+
+
+message IndexCoprocessorCreateRequest {
+	required bytes family = 1;
+	required bytes qualifier = 2;
+	
+	required string indexType = 3;
+	repeated bytes arguments = 4;
+}
+
+message IndexCoprocessorCreateResponse {
+	required bool success = 1;
+}
+
+message IndexCoprocessorDeleteRequest{
+	required bytes family = 1;
+	required bytes qualifier = 2;
+}
+
+message IndexCoprocessorDeleteResponse{
+	required bool success = 1;
+}
+
+message IndexedQueryRequest {
+	repeated ProtoColumn column = 1;
+	required ProtoCriteriaList criteriaList = 2;
+}
+
+message IndexedQueryResponse {
+	repeated ProtoResult result = 1;
+}
+
+/* Request/Response custom types */
+message ProtoColumn {
+  required bytes family = 1;
+  optional bytes qualifier = 2;
+}
+
+message ProtoCriteriaList {
+  required ProtoOperator operator = 1;
+  repeated ProtoByteArrayCriterion byteArrayCriteria = 2;
+
+  enum ProtoOperator {
+    MUST_PASS_ALL = 1;
+    MUST_PASS_ONE = 2;
+  }
+}
+
+message ProtoByteArrayCriterion {
+	required ProtoCompareType compareOp = 1;
+	required ProtoColumn compareColumn = 2;
+	required bytes compareToValue = 3;
+	optional ProtoRange range = 4;
+}
+
+message ProtoRange {
+	required bytes lowerBound = 1;
+	required bytes higherBound = 2;
+}
+
+enum ProtoCompareType {
+  LESS = 0;
+  LESS_OR_EQUAL = 1;
+  EQUAL = 2;
+  NOT_EQUAL = 3;
+  GREATER_OR_EQUAL = 4;
+  GREATER = 5;
+  NO_OP = 6;
+  RANGE = 7;
+}
+
+message ProtoResult {
+  repeated ProtoKeyValue keyValue = 1;
+}
+
+message ProtoKeyValue {
+  required bytes row = 1;
+  required bytes family = 2;
+  required bytes qualifier = 3;
+  optional uint64 timestamp = 4;
+  optional ProtoKeyType keyType = 5;
+  optional bytes value = 6;
+}
+
+enum ProtoKeyType {
+    MINIMUM = 0;
+    PUT = 4;
+
+    DELETE = 8;
+    DELETE_COLUMN = 12;
+    DELETE_FAMILY = 14;
+
+    // MAXIMUM is used when searching; you look from maximum on down.
+    MAXIMUM = 255;
+}
+
+service IndexCoprocessorInMemService {
+  rpc createIndex(IndexCoprocessorCreateRequest)
+      returns(IndexCoprocessorCreateResponse);
+
+  rpc deleteIndex(IndexCoprocessorDeleteRequest)
+      returns(IndexCoprocessorDeleteResponse);
+
+  rpc execIndexedQuery(IndexedQueryRequest)
+      returns(IndexedQueryResponse);
+}
