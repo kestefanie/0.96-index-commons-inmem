@@ -1,21 +1,5 @@
 package ca.mcgill.distsys.hbase96.indexcommonsinmem;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.hadoop.hbase.Cell;
-import org.apache.hadoop.hbase.KeyValue;
-import org.apache.hadoop.hbase.client.Result;
-import org.apache.hadoop.hbase.util.Bytes;
-
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.exceptions.InvalidCriterionException;
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.exceptions.InvalidQueryException;
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.ByteArrayCriterion;
@@ -29,12 +13,26 @@ import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.Index
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoCompareType;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoCriteriaList;
-import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoRange;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoCriteriaList.ProtoOperator;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoKeyValue;
+import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoRange;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoResult;
-
 import com.google.protobuf.ByteString;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.KeyValue;
+import org.apache.hadoop.hbase.client.Result;
+import org.apache.hadoop.hbase.util.Bytes;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Util {
 	
@@ -295,4 +293,41 @@ public class Util {
         queryCriterion.setCompareColumn(criterionColumn);
 
     }
+
+    // Yousuf
+    public static IndexedColumnQuery buildIndexedQuery(byte[] family,
+                                                       byte[] qualifier,
+                                                       byte[] value,
+                                                       CompareType comparison) {
+      IndexedColumnQuery query = new IndexedColumnQuery();
+      query.setMustPassAllCriteria(true);
+      ByteArrayCriterion criterion = new ByteArrayCriterion(value);
+      criterion.setCompareColumn(new Column(family).setQualifier(qualifier));
+      criterion.setComparisonType(comparison);
+      query.addCriterion(criterion);
+      return query;
+    }
+
+    public static IndexedColumnQuery buildIndexedQuery(byte[] family,
+                                                       byte[] qualifier,
+                                                       byte[] value) {
+      return buildIndexedQuery(family, qualifier, value, CompareType.EQUAL);
+    }
+
+    // Range query (inclusive)
+    public static IndexedColumnQuery buildIndexedQuery(byte[] family,
+                                                       byte[] qualifier,
+                                                       byte[] valueA,
+                                                       byte[] valueB) {
+      IndexedColumnQuery query = new IndexedColumnQuery();
+      query.setMustPassAllCriteria(true);
+      ByteArrayCriterion criterion = new ByteArrayCriterion(valueA);
+      criterion.setCompareColumn(new Column(family).setQualifier(qualifier));
+      criterion.setComparisonType(CompareType.RANGE);
+      criterion.setRange(valueA, valueB);
+      query.addCriterion(criterion);
+      return query;
+    }
+
+
 }

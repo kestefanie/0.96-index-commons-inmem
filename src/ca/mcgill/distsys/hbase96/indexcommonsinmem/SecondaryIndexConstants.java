@@ -18,4 +18,15 @@ public class SecondaryIndexConstants {
     
     public static final String INDEX_COPROCESSOR_BINDADDR = "indexCoprocessor.bindaddr";
     public static final String INDEX_COPROCESSOR_REGIONSERVER_HOSTS = "indexCoprocessor.regionserver_hosts";
+
+    public static final String PLUGGABLE_INDEX_NAMESPACE =
+        "ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.pluggableIndex";
+
+    public static final String HASHTABLE_INDEX =
+        PLUGGABLE_INDEX_NAMESPACE + ".hashtableBased.RegionColumnIndex";
+
+    public static final String HYBRID_INDEX =
+        PLUGGABLE_INDEX_NAMESPACE + ".hybridBased.HybridIndex";
+
+    public static final String DEFAULT_INDEX = HYBRID_INDEX;
 }

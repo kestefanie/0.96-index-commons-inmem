@@ -1,12 +1,13 @@
 package ca.mcgill.distsys.hbase96.indexcommonsinmem.proto;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp;
 import org.apache.hadoop.hbase.filter.Filter;
 import org.apache.hadoop.hbase.filter.SingleColumnValueFilter;
+import org.apache.hadoop.hbase.util.Bytes;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ByteArrayCriterion extends Criterion<byte[]> {
 
@@ -19,7 +20,8 @@ public class ByteArrayCriterion extends Criterion<byte[]> {
         switch (getComparisonType()) {
         case EQUAL:
             if (Arrays.equals(value, getComparisonValue())) {
-            	System.out.println("Just For Test:   " + new String(value) + "  " +  new String(getComparisonValue()));
+            	System.out.println("Just For Test:   " + Bytes.toString(value) +
+                  "  " + Bytes.toString(getComparisonValue()));
                 return true;
             }
             return false;
@@ -33,8 +35,8 @@ public class ByteArrayCriterion extends Criterion<byte[]> {
         Set<String> result = new HashSet<String>();
         switch (getComparisonType()) {
         case EQUAL:
-            if (idxValueSet.contains(new String(getComparisonValue()))) {
-                result.add(new String(getComparisonValue()));
+            if (idxValueSet.contains(Bytes.toString(getComparisonValue()))) {
+                result.add(Bytes.toString(getComparisonValue()));
             }
         default:
             return result;
