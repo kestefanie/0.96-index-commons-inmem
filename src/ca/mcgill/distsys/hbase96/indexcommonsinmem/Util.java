@@ -8,6 +8,7 @@ import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.Criterion;
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.Criterion.CompareType;
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.IndexedColumnQuery;
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.Range;
+import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.IndexCoprocessorCreateRequest;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.IndexedQueryRequest;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoByteArrayCriterion;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn;
@@ -32,6 +33,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Util {
@@ -281,7 +283,7 @@ public class Util {
         	queryCriterion.setComparisonType(CompareType.RANGE);
         	queryCriterion.setRange(((ProtoByteArrayCriterion)requestCriterion).getRange().getLowerBound().toByteArray(), ((ProtoByteArrayCriterion)requestCriterion).getRange().getHigherBound().toByteArray());
         	LOG.info("Util.class: lowerBound" + Bytes.toString(queryCriterion.getRange().getLowerBound()));
-        	LOG.info("Util.class: lowerBound" + Bytes.toString(queryCriterion.getRange().getHigherBound()));
+        	LOG.info("Util.class: higherBound" + Bytes.toString(queryCriterion.getRange().getHigherBound()));
         	break;
         default:
             queryCriterion.setComparisonType(CompareType.NO_OP);
@@ -327,6 +329,27 @@ public class Util {
       criterion.setRange(valueA, valueB);
       query.addCriterion(criterion);
       return query;
+    }
+    
+    public static byte[] concatColumns(List<Column> colList) {
+    	byte[] concatColumns = Util.concatColumns(colList);
+    	return concatColumns;
+    }
+    
+    public static List<Column> buildComparableColList(IndexCoprocessorCreateRequest request) {
+        List<Column> colList = new ArrayList<Column> ();
+
+        for (ProtoColumn requestCol : request.getColumnList()) {
+            Column queryColumn = new Column(requestCol.getFamily().toByteArray());
+            if (requestCol.hasQualifier()) {
+                queryColumn.setQualifier(requestCol.getQualifier().toByteArray());
+            }
+            colList.add(queryColumn);
+        }
+        
+        Collections.sort(colList);
+
+        return colList;
     }
 
 

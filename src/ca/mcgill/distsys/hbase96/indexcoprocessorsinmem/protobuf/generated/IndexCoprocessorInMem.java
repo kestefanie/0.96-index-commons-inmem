@@ -273,23 +273,23 @@ public final class IndexCoprocessorInMem {
   public interface IndexCoprocessorCreateRequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // required bytes family = 1;
+    // optional bytes family = 1;
     /**
-     * <code>required bytes family = 1;</code>
+     * <code>optional bytes family = 1;</code>
      */
     boolean hasFamily();
     /**
-     * <code>required bytes family = 1;</code>
+     * <code>optional bytes family = 1;</code>
      */
     com.google.protobuf.ByteString getFamily();
 
-    // required bytes qualifier = 2;
+    // optional bytes qualifier = 2;
     /**
-     * <code>required bytes qualifier = 2;</code>
+     * <code>optional bytes qualifier = 2;</code>
      */
     boolean hasQualifier();
     /**
-     * <code>required bytes qualifier = 2;</code>
+     * <code>optional bytes qualifier = 2;</code>
      */
     com.google.protobuf.ByteString getQualifier();
 
@@ -321,6 +321,41 @@ public final class IndexCoprocessorInMem {
      * <code>repeated bytes arguments = 4;</code>
      */
     com.google.protobuf.ByteString getArguments(int index);
+
+    // repeated .ProtoColumn column = 5;
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> 
+        getColumnList();
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn getColumn(int index);
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    int getColumnCount();
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    java.util.List<? extends ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> 
+        getColumnOrBuilderList();
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder getColumnOrBuilder(
+        int index);
+
+    // optional bool isMultiColumns = 6;
+    /**
+     * <code>optional bool isMultiColumns = 6;</code>
+     */
+    boolean hasIsMultiColumns();
+    /**
+     * <code>optional bool isMultiColumns = 6;</code>
+     */
+    boolean getIsMultiColumns();
   }
   /**
    * Protobuf type {@code IndexCoprocessorCreateRequest}
@@ -396,6 +431,19 @@ public final class IndexCoprocessorInMem {
               arguments_.add(input.readBytes());
               break;
             }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                column_ = new java.util.ArrayList<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              column_.add(input.readMessage(ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.PARSER, extensionRegistry));
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000008;
+              isMultiColumns_ = input.readBool();
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -406,6 +454,9 @@ public final class IndexCoprocessorInMem {
       } finally {
         if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
           arguments_ = java.util.Collections.unmodifiableList(arguments_);
+        }
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          column_ = java.util.Collections.unmodifiableList(column_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -439,33 +490,33 @@ public final class IndexCoprocessorInMem {
     }
 
     private int bitField0_;
-    // required bytes family = 1;
+    // optional bytes family = 1;
     public static final int FAMILY_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString family_;
     /**
-     * <code>required bytes family = 1;</code>
+     * <code>optional bytes family = 1;</code>
      */
     public boolean hasFamily() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required bytes family = 1;</code>
+     * <code>optional bytes family = 1;</code>
      */
     public com.google.protobuf.ByteString getFamily() {
       return family_;
     }
 
-    // required bytes qualifier = 2;
+    // optional bytes qualifier = 2;
     public static final int QUALIFIER_FIELD_NUMBER = 2;
     private com.google.protobuf.ByteString qualifier_;
     /**
-     * <code>required bytes qualifier = 2;</code>
+     * <code>optional bytes qualifier = 2;</code>
      */
     public boolean hasQualifier() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required bytes qualifier = 2;</code>
+     * <code>optional bytes qualifier = 2;</code>
      */
     public com.google.protobuf.ByteString getQualifier() {
       return qualifier_;
@@ -537,28 +588,80 @@ public final class IndexCoprocessorInMem {
       return arguments_.get(index);
     }
 
+    // repeated .ProtoColumn column = 5;
+    public static final int COLUMN_FIELD_NUMBER = 5;
+    private java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> column_;
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    public java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> getColumnList() {
+      return column_;
+    }
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    public java.util.List<? extends ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> 
+        getColumnOrBuilderList() {
+      return column_;
+    }
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    public int getColumnCount() {
+      return column_.size();
+    }
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn getColumn(int index) {
+      return column_.get(index);
+    }
+    /**
+     * <code>repeated .ProtoColumn column = 5;</code>
+     */
+    public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder getColumnOrBuilder(
+        int index) {
+      return column_.get(index);
+    }
+
+    // optional bool isMultiColumns = 6;
+    public static final int ISMULTICOLUMNS_FIELD_NUMBER = 6;
+    private boolean isMultiColumns_;
+    /**
+     * <code>optional bool isMultiColumns = 6;</code>
+     */
+    public boolean hasIsMultiColumns() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional bool isMultiColumns = 6;</code>
+     */
+    public boolean getIsMultiColumns() {
+      return isMultiColumns_;
+    }
+
     private void initFields() {
       family_ = com.google.protobuf.ByteString.EMPTY;
       qualifier_ = com.google.protobuf.ByteString.EMPTY;
       indexType_ = "";
       arguments_ = java.util.Collections.emptyList();
+      column_ = java.util.Collections.emptyList();
+      isMultiColumns_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
-      if (!hasFamily()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasQualifier()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasIndexType()) {
         memoizedIsInitialized = 0;
         return false;
+      }
+      for (int i = 0; i < getColumnCount(); i++) {
+        if (!getColumn(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
       }
       memoizedIsInitialized = 1;
       return true;
@@ -578,6 +681,12 @@ public final class IndexCoprocessorInMem {
       }
       for (int i = 0; i < arguments_.size(); i++) {
         output.writeBytes(4, arguments_.get(i));
+      }
+      for (int i = 0; i < column_.size(); i++) {
+        output.writeMessage(5, column_.get(i));
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(6, isMultiColumns_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -608,6 +717,14 @@ public final class IndexCoprocessorInMem {
         }
         size += dataSize;
         size += 1 * getArgumentsList().size();
+      }
+      for (int i = 0; i < column_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, column_.get(i));
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, isMultiColumns_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -649,6 +766,13 @@ public final class IndexCoprocessorInMem {
       }
       result = result && getArgumentsList()
           .equals(other.getArgumentsList());
+      result = result && getColumnList()
+          .equals(other.getColumnList());
+      result = result && (hasIsMultiColumns() == other.hasIsMultiColumns());
+      if (hasIsMultiColumns()) {
+        result = result && (getIsMultiColumns()
+            == other.getIsMultiColumns());
+      }
       result = result &&
           getUnknownFields().equals(other.getUnknownFields());
       return result;
@@ -677,6 +801,14 @@ public final class IndexCoprocessorInMem {
       if (getArgumentsCount() > 0) {
         hash = (37 * hash) + ARGUMENTS_FIELD_NUMBER;
         hash = (53 * hash) + getArgumentsList().hashCode();
+      }
+      if (getColumnCount() > 0) {
+        hash = (37 * hash) + COLUMN_FIELD_NUMBER;
+        hash = (53 * hash) + getColumnList().hashCode();
+      }
+      if (hasIsMultiColumns()) {
+        hash = (37 * hash) + ISMULTICOLUMNS_FIELD_NUMBER;
+        hash = (53 * hash) + hashBoolean(getIsMultiColumns());
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -779,6 +911,7 @@ public final class IndexCoprocessorInMem {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getColumnFieldBuilder();
         }
       }
       private static Builder create() {
@@ -795,6 +928,14 @@ public final class IndexCoprocessorInMem {
         bitField0_ = (bitField0_ & ~0x00000004);
         arguments_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
+        if (columnBuilder_ == null) {
+          column_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        } else {
+          columnBuilder_.clear();
+        }
+        isMultiColumns_ = false;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -840,6 +981,19 @@ public final class IndexCoprocessorInMem {
           bitField0_ = (bitField0_ & ~0x00000008);
         }
         result.arguments_ = arguments_;
+        if (columnBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+            column_ = java.util.Collections.unmodifiableList(column_);
+            bitField0_ = (bitField0_ & ~0x00000010);
+          }
+          result.column_ = column_;
+        } else {
+          result.column_ = columnBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.isMultiColumns_ = isMultiColumns_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -877,22 +1031,49 @@ public final class IndexCoprocessorInMem {
           }
           onChanged();
         }
+        if (columnBuilder_ == null) {
+          if (!other.column_.isEmpty()) {
+            if (column_.isEmpty()) {
+              column_ = other.column_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+            } else {
+              ensureColumnIsMutable();
+              column_.addAll(other.column_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.column_.isEmpty()) {
+            if (columnBuilder_.isEmpty()) {
+              columnBuilder_.dispose();
+              columnBuilder_ = null;
+              column_ = other.column_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+              columnBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getColumnFieldBuilder() : null;
+            } else {
+              columnBuilder_.addAllMessages(other.column_);
+            }
+          }
+        }
+        if (other.hasIsMultiColumns()) {
+          setIsMultiColumns(other.getIsMultiColumns());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasFamily()) {
-          
-          return false;
-        }
-        if (!hasQualifier()) {
-          
-          return false;
-        }
         if (!hasIndexType()) {
           
           return false;
+        }
+        for (int i = 0; i < getColumnCount(); i++) {
+          if (!getColumn(i).isInitialized()) {
+            
+            return false;
+          }
         }
         return true;
       }
@@ -916,22 +1097,22 @@ public final class IndexCoprocessorInMem {
       }
       private int bitField0_;
 
-      // required bytes family = 1;
+      // optional bytes family = 1;
       private com.google.protobuf.ByteString family_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required bytes family = 1;</code>
+       * <code>optional bytes family = 1;</code>
        */
       public boolean hasFamily() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required bytes family = 1;</code>
+       * <code>optional bytes family = 1;</code>
        */
       public com.google.protobuf.ByteString getFamily() {
         return family_;
       }
       /**
-       * <code>required bytes family = 1;</code>
+       * <code>optional bytes family = 1;</code>
        */
       public Builder setFamily(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -943,7 +1124,7 @@ public final class IndexCoprocessorInMem {
         return this;
       }
       /**
-       * <code>required bytes family = 1;</code>
+       * <code>optional bytes family = 1;</code>
        */
       public Builder clearFamily() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -952,22 +1133,22 @@ public final class IndexCoprocessorInMem {
         return this;
       }
 
-      // required bytes qualifier = 2;
+      // optional bytes qualifier = 2;
       private com.google.protobuf.ByteString qualifier_ = com.google.protobuf.ByteString.EMPTY;
       /**
-       * <code>required bytes qualifier = 2;</code>
+       * <code>optional bytes qualifier = 2;</code>
        */
       public boolean hasQualifier() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required bytes qualifier = 2;</code>
+       * <code>optional bytes qualifier = 2;</code>
        */
       public com.google.protobuf.ByteString getQualifier() {
         return qualifier_;
       }
       /**
-       * <code>required bytes qualifier = 2;</code>
+       * <code>optional bytes qualifier = 2;</code>
        */
       public Builder setQualifier(com.google.protobuf.ByteString value) {
         if (value == null) {
@@ -979,7 +1160,7 @@ public final class IndexCoprocessorInMem {
         return this;
       }
       /**
-       * <code>required bytes qualifier = 2;</code>
+       * <code>optional bytes qualifier = 2;</code>
        */
       public Builder clearQualifier() {
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -1130,6 +1311,279 @@ public final class IndexCoprocessorInMem {
       public Builder clearArguments() {
         arguments_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+
+      // repeated .ProtoColumn column = 5;
+      private java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> column_ =
+        java.util.Collections.emptyList();
+      private void ensureColumnIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          column_ = new java.util.ArrayList<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn>(column_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> columnBuilder_;
+
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> getColumnList() {
+        if (columnBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(column_);
+        } else {
+          return columnBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public int getColumnCount() {
+        if (columnBuilder_ == null) {
+          return column_.size();
+        } else {
+          return columnBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn getColumn(int index) {
+        if (columnBuilder_ == null) {
+          return column_.get(index);
+        } else {
+          return columnBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public Builder setColumn(
+          int index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn value) {
+        if (columnBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureColumnIsMutable();
+          column_.set(index, value);
+          onChanged();
+        } else {
+          columnBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public Builder setColumn(
+          int index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder builderForValue) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          column_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          columnBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public Builder addColumn(ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn value) {
+        if (columnBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureColumnIsMutable();
+          column_.add(value);
+          onChanged();
+        } else {
+          columnBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public Builder addColumn(
+          int index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn value) {
+        if (columnBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureColumnIsMutable();
+          column_.add(index, value);
+          onChanged();
+        } else {
+          columnBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public Builder addColumn(
+          ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder builderForValue) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          column_.add(builderForValue.build());
+          onChanged();
+        } else {
+          columnBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public Builder addColumn(
+          int index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder builderForValue) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          column_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          columnBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public Builder addAllColumn(
+          java.lang.Iterable<? extends ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> values) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          super.addAll(values, column_);
+          onChanged();
+        } else {
+          columnBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public Builder clearColumn() {
+        if (columnBuilder_ == null) {
+          column_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+          onChanged();
+        } else {
+          columnBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public Builder removeColumn(int index) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          column_.remove(index);
+          onChanged();
+        } else {
+          columnBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder getColumnBuilder(
+          int index) {
+        return getColumnFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder getColumnOrBuilder(
+          int index) {
+        if (columnBuilder_ == null) {
+          return column_.get(index);  } else {
+          return columnBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public java.util.List<? extends ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> 
+           getColumnOrBuilderList() {
+        if (columnBuilder_ != null) {
+          return columnBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(column_);
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder addColumnBuilder() {
+        return getColumnFieldBuilder().addBuilder(
+            ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder addColumnBuilder(
+          int index) {
+        return getColumnFieldBuilder().addBuilder(
+            index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 5;</code>
+       */
+      public java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder> 
+           getColumnBuilderList() {
+        return getColumnFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> 
+          getColumnFieldBuilder() {
+        if (columnBuilder_ == null) {
+          columnBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder>(
+                  column_,
+                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  getParentForChildren(),
+                  isClean());
+          column_ = null;
+        }
+        return columnBuilder_;
+      }
+
+      // optional bool isMultiColumns = 6;
+      private boolean isMultiColumns_ ;
+      /**
+       * <code>optional bool isMultiColumns = 6;</code>
+       */
+      public boolean hasIsMultiColumns() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional bool isMultiColumns = 6;</code>
+       */
+      public boolean getIsMultiColumns() {
+        return isMultiColumns_;
+      }
+      /**
+       * <code>optional bool isMultiColumns = 6;</code>
+       */
+      public Builder setIsMultiColumns(boolean value) {
+        bitField0_ |= 0x00000020;
+        isMultiColumns_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isMultiColumns = 6;</code>
+       */
+      public Builder clearIsMultiColumns() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        isMultiColumns_ = false;
         onChanged();
         return this;
       }
@@ -1609,6 +2063,41 @@ public final class IndexCoprocessorInMem {
      * <code>required bytes qualifier = 2;</code>
      */
     com.google.protobuf.ByteString getQualifier();
+
+    // repeated .ProtoColumn column = 3;
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> 
+        getColumnList();
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn getColumn(int index);
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    int getColumnCount();
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    java.util.List<? extends ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> 
+        getColumnOrBuilderList();
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder getColumnOrBuilder(
+        int index);
+
+    // optional bool isMultiColumns = 4;
+    /**
+     * <code>optional bool isMultiColumns = 4;</code>
+     */
+    boolean hasIsMultiColumns();
+    /**
+     * <code>optional bool isMultiColumns = 4;</code>
+     */
+    boolean getIsMultiColumns();
   }
   /**
    * Protobuf type {@code IndexCoprocessorDeleteRequest}
@@ -1671,6 +2160,19 @@ public final class IndexCoprocessorInMem {
               qualifier_ = input.readBytes();
               break;
             }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                column_ = new java.util.ArrayList<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn>();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              column_.add(input.readMessage(ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.PARSER, extensionRegistry));
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000004;
+              isMultiColumns_ = input.readBool();
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -1679,6 +2181,9 @@ public final class IndexCoprocessorInMem {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          column_ = java.util.Collections.unmodifiableList(column_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -1743,9 +2248,63 @@ public final class IndexCoprocessorInMem {
       return qualifier_;
     }
 
+    // repeated .ProtoColumn column = 3;
+    public static final int COLUMN_FIELD_NUMBER = 3;
+    private java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> column_;
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    public java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> getColumnList() {
+      return column_;
+    }
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    public java.util.List<? extends ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> 
+        getColumnOrBuilderList() {
+      return column_;
+    }
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    public int getColumnCount() {
+      return column_.size();
+    }
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn getColumn(int index) {
+      return column_.get(index);
+    }
+    /**
+     * <code>repeated .ProtoColumn column = 3;</code>
+     */
+    public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder getColumnOrBuilder(
+        int index) {
+      return column_.get(index);
+    }
+
+    // optional bool isMultiColumns = 4;
+    public static final int ISMULTICOLUMNS_FIELD_NUMBER = 4;
+    private boolean isMultiColumns_;
+    /**
+     * <code>optional bool isMultiColumns = 4;</code>
+     */
+    public boolean hasIsMultiColumns() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional bool isMultiColumns = 4;</code>
+     */
+    public boolean getIsMultiColumns() {
+      return isMultiColumns_;
+    }
+
     private void initFields() {
       family_ = com.google.protobuf.ByteString.EMPTY;
       qualifier_ = com.google.protobuf.ByteString.EMPTY;
+      column_ = java.util.Collections.emptyList();
+      isMultiColumns_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1760,6 +2319,12 @@ public final class IndexCoprocessorInMem {
         memoizedIsInitialized = 0;
         return false;
       }
+      for (int i = 0; i < getColumnCount(); i++) {
+        if (!getColumn(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -1772,6 +2337,12 @@ public final class IndexCoprocessorInMem {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, qualifier_);
+      }
+      for (int i = 0; i < column_.size(); i++) {
+        output.writeMessage(3, column_.get(i));
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBool(4, isMultiColumns_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -1789,6 +2360,14 @@ public final class IndexCoprocessorInMem {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, qualifier_);
+      }
+      for (int i = 0; i < column_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, column_.get(i));
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, isMultiColumns_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1823,6 +2402,13 @@ public final class IndexCoprocessorInMem {
         result = result && getQualifier()
             .equals(other.getQualifier());
       }
+      result = result && getColumnList()
+          .equals(other.getColumnList());
+      result = result && (hasIsMultiColumns() == other.hasIsMultiColumns());
+      if (hasIsMultiColumns()) {
+        result = result && (getIsMultiColumns()
+            == other.getIsMultiColumns());
+      }
       result = result &&
           getUnknownFields().equals(other.getUnknownFields());
       return result;
@@ -1843,6 +2429,14 @@ public final class IndexCoprocessorInMem {
       if (hasQualifier()) {
         hash = (37 * hash) + QUALIFIER_FIELD_NUMBER;
         hash = (53 * hash) + getQualifier().hashCode();
+      }
+      if (getColumnCount() > 0) {
+        hash = (37 * hash) + COLUMN_FIELD_NUMBER;
+        hash = (53 * hash) + getColumnList().hashCode();
+      }
+      if (hasIsMultiColumns()) {
+        hash = (37 * hash) + ISMULTICOLUMNS_FIELD_NUMBER;
+        hash = (53 * hash) + hashBoolean(getIsMultiColumns());
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -1945,6 +2539,7 @@ public final class IndexCoprocessorInMem {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getColumnFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1957,6 +2552,14 @@ public final class IndexCoprocessorInMem {
         bitField0_ = (bitField0_ & ~0x00000001);
         qualifier_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
+        if (columnBuilder_ == null) {
+          column_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          columnBuilder_.clear();
+        }
+        isMultiColumns_ = false;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -1993,6 +2596,19 @@ public final class IndexCoprocessorInMem {
           to_bitField0_ |= 0x00000002;
         }
         result.qualifier_ = qualifier_;
+        if (columnBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            column_ = java.util.Collections.unmodifiableList(column_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.column_ = column_;
+        } else {
+          result.column_ = columnBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.isMultiColumns_ = isMultiColumns_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2015,6 +2631,35 @@ public final class IndexCoprocessorInMem {
         if (other.hasQualifier()) {
           setQualifier(other.getQualifier());
         }
+        if (columnBuilder_ == null) {
+          if (!other.column_.isEmpty()) {
+            if (column_.isEmpty()) {
+              column_ = other.column_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureColumnIsMutable();
+              column_.addAll(other.column_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.column_.isEmpty()) {
+            if (columnBuilder_.isEmpty()) {
+              columnBuilder_.dispose();
+              columnBuilder_ = null;
+              column_ = other.column_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              columnBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getColumnFieldBuilder() : null;
+            } else {
+              columnBuilder_.addAllMessages(other.column_);
+            }
+          }
+        }
+        if (other.hasIsMultiColumns()) {
+          setIsMultiColumns(other.getIsMultiColumns());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -2027,6 +2672,12 @@ public final class IndexCoprocessorInMem {
         if (!hasQualifier()) {
           
           return false;
+        }
+        for (int i = 0; i < getColumnCount(); i++) {
+          if (!getColumn(i).isInitialized()) {
+            
+            return false;
+          }
         }
         return true;
       }
@@ -2118,6 +2769,279 @@ public final class IndexCoprocessorInMem {
       public Builder clearQualifier() {
         bitField0_ = (bitField0_ & ~0x00000002);
         qualifier_ = getDefaultInstance().getQualifier();
+        onChanged();
+        return this;
+      }
+
+      // repeated .ProtoColumn column = 3;
+      private java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> column_ =
+        java.util.Collections.emptyList();
+      private void ensureColumnIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          column_ = new java.util.ArrayList<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn>(column_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> columnBuilder_;
+
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> getColumnList() {
+        if (columnBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(column_);
+        } else {
+          return columnBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public int getColumnCount() {
+        if (columnBuilder_ == null) {
+          return column_.size();
+        } else {
+          return columnBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn getColumn(int index) {
+        if (columnBuilder_ == null) {
+          return column_.get(index);
+        } else {
+          return columnBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public Builder setColumn(
+          int index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn value) {
+        if (columnBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureColumnIsMutable();
+          column_.set(index, value);
+          onChanged();
+        } else {
+          columnBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public Builder setColumn(
+          int index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder builderForValue) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          column_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          columnBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public Builder addColumn(ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn value) {
+        if (columnBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureColumnIsMutable();
+          column_.add(value);
+          onChanged();
+        } else {
+          columnBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public Builder addColumn(
+          int index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn value) {
+        if (columnBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureColumnIsMutable();
+          column_.add(index, value);
+          onChanged();
+        } else {
+          columnBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public Builder addColumn(
+          ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder builderForValue) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          column_.add(builderForValue.build());
+          onChanged();
+        } else {
+          columnBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public Builder addColumn(
+          int index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder builderForValue) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          column_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          columnBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public Builder addAllColumn(
+          java.lang.Iterable<? extends ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn> values) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          super.addAll(values, column_);
+          onChanged();
+        } else {
+          columnBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public Builder clearColumn() {
+        if (columnBuilder_ == null) {
+          column_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          columnBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public Builder removeColumn(int index) {
+        if (columnBuilder_ == null) {
+          ensureColumnIsMutable();
+          column_.remove(index);
+          onChanged();
+        } else {
+          columnBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder getColumnBuilder(
+          int index) {
+        return getColumnFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder getColumnOrBuilder(
+          int index) {
+        if (columnBuilder_ == null) {
+          return column_.get(index);  } else {
+          return columnBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public java.util.List<? extends ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> 
+           getColumnOrBuilderList() {
+        if (columnBuilder_ != null) {
+          return columnBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(column_);
+        }
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder addColumnBuilder() {
+        return getColumnFieldBuilder().addBuilder(
+            ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder addColumnBuilder(
+          int index) {
+        return getColumnFieldBuilder().addBuilder(
+            index, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ProtoColumn column = 3;</code>
+       */
+      public java.util.List<ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder> 
+           getColumnBuilderList() {
+        return getColumnFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder> 
+          getColumnFieldBuilder() {
+        if (columnBuilder_ == null) {
+          columnBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn.Builder, ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumnOrBuilder>(
+                  column_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          column_ = null;
+        }
+        return columnBuilder_;
+      }
+
+      // optional bool isMultiColumns = 4;
+      private boolean isMultiColumns_ ;
+      /**
+       * <code>optional bool isMultiColumns = 4;</code>
+       */
+      public boolean hasIsMultiColumns() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional bool isMultiColumns = 4;</code>
+       */
+      public boolean getIsMultiColumns() {
+        return isMultiColumns_;
+      }
+      /**
+       * <code>optional bool isMultiColumns = 4;</code>
+       */
+      public Builder setIsMultiColumns(boolean value) {
+        bitField0_ |= 0x00000008;
+        isMultiColumns_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool isMultiColumns = 4;</code>
+       */
+      public Builder clearIsMultiColumns() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        isMultiColumns_ = false;
         onChanged();
         return this;
       }
@@ -9317,48 +10241,51 @@ public final class IndexCoprocessorInMem {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n#IndexCoprocessorInMemEndpoint.proto\"h\n" +
-      "\035IndexCoprocessorCreateRequest\022\016\n\006family" +
-      "\030\001 \002(\014\022\021\n\tqualifier\030\002 \002(\014\022\021\n\tindexType\030\003" +
-      " \002(\t\022\021\n\targuments\030\004 \003(\014\"1\n\036IndexCoproces" +
-      "sorCreateResponse\022\017\n\007success\030\001 \002(\010\"B\n\035In" +
-      "dexCoprocessorDeleteRequest\022\016\n\006family\030\001 " +
-      "\002(\014\022\021\n\tqualifier\030\002 \002(\014\"1\n\036IndexCoprocess" +
-      "orDeleteResponse\022\017\n\007success\030\001 \002(\010\"]\n\023Ind" +
-      "exedQueryRequest\022\034\n\006column\030\001 \003(\0132\014.Proto" +
-      "Column\022(\n\014criteriaList\030\002 \002(\0132\022.ProtoCrit",
-      "eriaList\"4\n\024IndexedQueryResponse\022\034\n\006resu" +
-      "lt\030\001 \003(\0132\014.ProtoResult\"0\n\013ProtoColumn\022\016\n" +
-      "\006family\030\001 \002(\014\022\021\n\tqualifier\030\002 \001(\014\"\263\001\n\021Pro" +
-      "toCriteriaList\0222\n\010operator\030\001 \002(\0162 .Proto" +
-      "CriteriaList.ProtoOperator\0223\n\021byteArrayC" +
-      "riteria\030\002 \003(\0132\030.ProtoByteArrayCriterion\"" +
-      "5\n\rProtoOperator\022\021\n\rMUST_PASS_ALL\020\001\022\021\n\rM" +
-      "UST_PASS_ONE\020\002\"\230\001\n\027ProtoByteArrayCriteri" +
-      "on\022$\n\tcompareOp\030\001 \002(\0162\021.ProtoCompareType" +
-      "\022#\n\rcompareColumn\030\002 \002(\0132\014.ProtoColumn\022\026\n",
-      "\016compareToValue\030\003 \002(\014\022\032\n\005range\030\004 \001(\0132\013.P" +
-      "rotoRange\"5\n\nProtoRange\022\022\n\nlowerBound\030\001 " +
-      "\002(\014\022\023\n\013higherBound\030\002 \002(\014\"/\n\013ProtoResult\022" +
-      " \n\010keyValue\030\001 \003(\0132\016.ProtoKeyValue\"\201\001\n\rPr" +
-      "otoKeyValue\022\013\n\003row\030\001 \002(\014\022\016\n\006family\030\002 \002(\014" +
-      "\022\021\n\tqualifier\030\003 \002(\014\022\021\n\ttimestamp\030\004 \001(\004\022\036" +
-      "\n\007keyType\030\005 \001(\0162\r.ProtoKeyType\022\r\n\005value\030" +
-      "\006 \001(\014*\202\001\n\020ProtoCompareType\022\010\n\004LESS\020\000\022\021\n\r" +
-      "LESS_OR_EQUAL\020\001\022\t\n\005EQUAL\020\002\022\r\n\tNOT_EQUAL\020" +
-      "\003\022\024\n\020GREATER_OR_EQUAL\020\004\022\013\n\007GREATER\020\005\022\t\n\005",
-      "NO_OP\020\006\022\t\n\005RANGE\020\007*d\n\014ProtoKeyType\022\013\n\007MI" +
-      "NIMUM\020\000\022\007\n\003PUT\020\004\022\n\n\006DELETE\020\010\022\021\n\rDELETE_C" +
-      "OLUMN\020\014\022\021\n\rDELETE_FAMILY\020\016\022\014\n\007MAXIMUM\020\377\001" +
-      "2\377\001\n\034IndexCoprocessorInMemService\022N\n\013cre" +
-      "ateIndex\022\036.IndexCoprocessorCreateRequest" +
-      "\032\037.IndexCoprocessorCreateResponse\022N\n\013del" +
-      "eteIndex\022\036.IndexCoprocessorDeleteRequest" +
-      "\032\037.IndexCoprocessorDeleteResponse\022?\n\020exe" +
-      "cIndexedQuery\022\024.IndexedQueryRequest\032\025.In" +
-      "dexedQueryResponseBd\nCca.mcgill.distsys.",
-      "hbase96.indexcoprocessorsinmem.protobuf." +
-      "generatedB\025IndexCoprocessorInMemH\001\210\001\001\240\001\001"
+      "\n#IndexCoprocessorInMemEndpoint.proto\"\236\001" +
+      "\n\035IndexCoprocessorCreateRequest\022\016\n\006famil" +
+      "y\030\001 \001(\014\022\021\n\tqualifier\030\002 \001(\014\022\021\n\tindexType\030" +
+      "\003 \002(\t\022\021\n\targuments\030\004 \003(\014\022\034\n\006column\030\005 \003(\013" +
+      "2\014.ProtoColumn\022\026\n\016isMultiColumns\030\006 \001(\010\"1" +
+      "\n\036IndexCoprocessorCreateResponse\022\017\n\007succ" +
+      "ess\030\001 \002(\010\"x\n\035IndexCoprocessorDeleteReque" +
+      "st\022\016\n\006family\030\001 \002(\014\022\021\n\tqualifier\030\002 \002(\014\022\034\n" +
+      "\006column\030\003 \003(\0132\014.ProtoColumn\022\026\n\016isMultiCo" +
+      "lumns\030\004 \001(\010\"1\n\036IndexCoprocessorDeleteRes",
+      "ponse\022\017\n\007success\030\001 \002(\010\"]\n\023IndexedQueryRe" +
+      "quest\022\034\n\006column\030\001 \003(\0132\014.ProtoColumn\022(\n\014c" +
+      "riteriaList\030\002 \002(\0132\022.ProtoCriteriaList\"4\n" +
+      "\024IndexedQueryResponse\022\034\n\006result\030\001 \003(\0132\014." +
+      "ProtoResult\"0\n\013ProtoColumn\022\016\n\006family\030\001 \002" +
+      "(\014\022\021\n\tqualifier\030\002 \001(\014\"\263\001\n\021ProtoCriteriaL" +
+      "ist\0222\n\010operator\030\001 \002(\0162 .ProtoCriteriaLis" +
+      "t.ProtoOperator\0223\n\021byteArrayCriteria\030\002 \003" +
+      "(\0132\030.ProtoByteArrayCriterion\"5\n\rProtoOpe" +
+      "rator\022\021\n\rMUST_PASS_ALL\020\001\022\021\n\rMUST_PASS_ON",
+      "E\020\002\"\230\001\n\027ProtoByteArrayCriterion\022$\n\tcompa" +
+      "reOp\030\001 \002(\0162\021.ProtoCompareType\022#\n\rcompare" +
+      "Column\030\002 \002(\0132\014.ProtoColumn\022\026\n\016compareToV" +
+      "alue\030\003 \002(\014\022\032\n\005range\030\004 \001(\0132\013.ProtoRange\"5" +
+      "\n\nProtoRange\022\022\n\nlowerBound\030\001 \002(\014\022\023\n\013high" +
+      "erBound\030\002 \002(\014\"/\n\013ProtoResult\022 \n\010keyValue" +
+      "\030\001 \003(\0132\016.ProtoKeyValue\"\201\001\n\rProtoKeyValue" +
+      "\022\013\n\003row\030\001 \002(\014\022\016\n\006family\030\002 \002(\014\022\021\n\tqualifi" +
+      "er\030\003 \002(\014\022\021\n\ttimestamp\030\004 \001(\004\022\036\n\007keyType\030\005" +
+      " \001(\0162\r.ProtoKeyType\022\r\n\005value\030\006 \001(\014*\202\001\n\020P",
+      "rotoCompareType\022\010\n\004LESS\020\000\022\021\n\rLESS_OR_EQU" +
+      "AL\020\001\022\t\n\005EQUAL\020\002\022\r\n\tNOT_EQUAL\020\003\022\024\n\020GREATE" +
+      "R_OR_EQUAL\020\004\022\013\n\007GREATER\020\005\022\t\n\005NO_OP\020\006\022\t\n\005" +
+      "RANGE\020\007*d\n\014ProtoKeyType\022\013\n\007MINIMUM\020\000\022\007\n\003" +
+      "PUT\020\004\022\n\n\006DELETE\020\010\022\021\n\rDELETE_COLUMN\020\014\022\021\n\r" +
+      "DELETE_FAMILY\020\016\022\014\n\007MAXIMUM\020\377\0012\377\001\n\034IndexC" +
+      "oprocessorInMemService\022N\n\013createIndex\022\036." +
+      "IndexCoprocessorCreateRequest\032\037.IndexCop" +
+      "rocessorCreateResponse\022N\n\013deleteIndex\022\036." +
+      "IndexCoprocessorDeleteRequest\032\037.IndexCop",
+      "rocessorDeleteResponse\022?\n\020execIndexedQue" +
+      "ry\022\024.IndexedQueryRequest\032\025.IndexedQueryR" +
+      "esponseBd\nCca.mcgill.distsys.hbase96.ind" +
+      "excoprocessorsinmem.protobuf.generatedB\025" +
+      "IndexCoprocessorInMemH\001\210\001\001\240\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -9370,7 +10297,7 @@ public final class IndexCoprocessorInMem {
           internal_static_IndexCoprocessorCreateRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_IndexCoprocessorCreateRequest_descriptor,
-              new java.lang.String[] { "Family", "Qualifier", "IndexType", "Arguments", });
+              new java.lang.String[] { "Family", "Qualifier", "IndexType", "Arguments", "Column", "IsMultiColumns", });
           internal_static_IndexCoprocessorCreateResponse_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_IndexCoprocessorCreateResponse_fieldAccessorTable = new
@@ -9382,7 +10309,7 @@ public final class IndexCoprocessorInMem {
           internal_static_IndexCoprocessorDeleteRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_IndexCoprocessorDeleteRequest_descriptor,
-              new java.lang.String[] { "Family", "Qualifier", });
+              new java.lang.String[] { "Family", "Qualifier", "Column", "IsMultiColumns", });
           internal_static_IndexCoprocessorDeleteResponse_descriptor =
             getDescriptor().getMessageTypes().get(3);
           internal_static_IndexCoprocessorDeleteResponse_fieldAccessorTable = new
