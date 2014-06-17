@@ -1,6 +1,9 @@
 package ca.mcgill.distsys.hbase96.indexcommonsinmem;
 
 import java.io.Serializable;
+import java.util.List;
+
+import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.Column;
 
 public class IndexedColumn implements Serializable {
 	private static final long serialVersionUID = 110709434738361949L;
@@ -10,6 +13,9 @@ public class IndexedColumn implements Serializable {
 
 	private String indexType;
 	private Object[] arguments;
+	
+	private boolean multiCols;
+	private List<Column> colList;
 
 	public IndexedColumn(byte[] columnFamily, byte[] qualifier) {
 		this.columnFamily = columnFamily;
@@ -17,6 +23,21 @@ public class IndexedColumn implements Serializable {
 		// set default index type and arguments
 		indexType = "ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.pluggableIndex.hybridBased.HybridIndex";
 		arguments = new Object[] {columnFamily, qualifier};
+	}
+	
+	public IndexedColumn(List<Column> colList) {
+		this.colList = colList;
+		// set multiCols to true
+		this.multiCols = true;
+		// set default index type and arguments
+		indexType = "ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.pluggableIndex.hybridBased.HybridIndex";
+		arguments = new Object[] {columnFamily, qualifier};
+	}
+	
+	public List<Column> getColumnList() {
+		
+		return this.colList;
+				
 	}
 
 	public byte[] getColumnFamily() {
