@@ -9,6 +9,7 @@ import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.Criterion.CompareType;
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.IndexedColumnQuery;
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.Range;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.IndexCoprocessorCreateRequest;
+import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.IndexCoprocessorDeleteRequest;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.IndexedQueryRequest;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoByteArrayCriterion;
 import ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.protobuf.generated.IndexCoprocessorInMem.ProtoColumn;
@@ -58,9 +59,28 @@ public class Util {
 	
 	
     public static byte[] concatByteArray(byte[] array1, byte[] array2) {
+    	
+    	// check if either of the array is null or not
+    	if(array1 == null && array2 == null) {
+    		return null;
+    	} else {
+    		if (array1 == null) {
+    			byte[] result = new byte[array2.length];
+    			System.arraycopy(array2, 0, result, 0, array2.length);
+    			return result;
+    		} else {
+    			if (array2 == null){
+    				byte [] result = new byte[array1.length];
+    				System.arraycopy(array1, 0, result, 0, array1.length);
+    				return result;
+    			}
+    		}
+    	}
+    	
+    	// Both array are not null
         byte[] result = new byte[array1.length + array2.length];
         int position = 0;
-
+        
         System.arraycopy(array1, 0, result, position, array1.length);
         position += array1.length;
 
@@ -151,6 +171,10 @@ public class Util {
         marshalCriteria(criteriaListBuilder, query.getCriteria());
 
         requestBuilder.setCriteriaList(criteriaListBuilder.build());
+        
+        // added by Cong
+        requestBuilder.setIsMultiColumns(query.isMultiColumns());
+        
         return requestBuilder.build();
     }
 
@@ -239,6 +263,9 @@ public class Util {
             initCriterionFromRequest(requestBACriterion, queryBACriterion);
             result.addCriterion(queryBACriterion);
         }
+        
+        // added by Cong
+        result.setMultiColumns(indexedQueryRequest.getIsMultiColumns());
 
         /* TODO: Add processing for other criterion types */
 
@@ -331,23 +358,48 @@ public class Util {
       return query;
     }
     
+    // Concatenate the columns in order to get (cf:a,cf2:b,cf3:c.....)
     public static byte[] concatColumns(List<Column> colList) {
-    	byte[] concatColumns = Util.concatColumns(colList);
+    	
+    	byte[] concatColumns = Bytes.toBytes("");
+    	for (Column column: colList) {
+    		concatColumns = Util.concatByteArray(concatColumns, Util.concatByteArray(column.getConcatByteArray(), Bytes.toBytes(",")));
+    	}
     	return concatColumns;
     }
     
     public static List<Column> buildComparableColList(IndexCoprocessorCreateRequest request) {
         List<Column> colList = new ArrayList<Column> ();
-
-        for (ProtoColumn requestCol : request.getColumnList()) {
-            Column queryColumn = new Column(requestCol.getFamily().toByteArray());
+        Column queryColumn = null;
+        List<ProtoColumn> protoColumnList = request.getColumnList();
+        
+        for (ProtoColumn requestCol : protoColumnList) {
+            queryColumn = new Column(requestCol.getFamily().toByteArray());
             if (requestCol.hasQualifier()) {
                 queryColumn.setQualifier(requestCol.getQualifier().toByteArray());
             }
             colList.add(queryColumn);
         }
         
-        Collections.sort(colList);
+        //Collections.sort(colList);
+
+        return colList;
+    }
+    
+    public static List<Column> buildComparableColList(IndexCoprocessorDeleteRequest request) {
+        List<Column> colList = new ArrayList<Column> ();
+        Column queryColumn = null;
+        List<ProtoColumn> protoColumnList = request.getColumnList();
+        
+        for (ProtoColumn requestCol : protoColumnList) {
+            queryColumn = new Column(requestCol.getFamily().toByteArray());
+            if (requestCol.hasQualifier()) {
+                queryColumn.setQualifier(requestCol.getQualifier().toByteArray());
+            }
+            colList.add(queryColumn);
+        }
+        
+        //Collections.sort(colList);
 
         return colList;
     }

@@ -13,6 +13,7 @@ public class IndexedColumn implements Serializable {
 
 	private String indexType;
 	private Object[] arguments;
+	private Class<?> [] argumentsClasses;
 	
 	private boolean multiCols;
 	private List<Column> colList;
@@ -56,11 +57,27 @@ public class IndexedColumn implements Serializable {
 		return arguments;
 	}
 	
+	public boolean getMultiColumn() {
+		return this.multiCols;
+	}
+	
+	public Class<?>[] getArgumentsClasses() {
+		return this.argumentsClasses;
+	}
+	
 	public void setIndexType(String type){
 		indexType = type;
 	}
 	
 	public void setArguments(Object[] argu) {
 		arguments = argu;
+	}
+	
+	public void setMultiCol(boolean isMultiCol){
+		this.multiCols = isMultiCol;
+	}
+	
+	public void setArgumentsClasses(Class<?>[] argumentsClasses) {
+		this.argumentsClasses = argumentsClasses;
 	}
 }

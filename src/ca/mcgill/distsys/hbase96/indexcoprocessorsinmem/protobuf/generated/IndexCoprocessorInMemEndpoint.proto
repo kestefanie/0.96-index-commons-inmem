@@ -8,11 +8,14 @@ option optimize_for = SPEED;
 
 
 message IndexCoprocessorCreateRequest {
-	required bytes family = 1;
-	required bytes qualifier = 2;
+	optional bytes family = 1;
+	optional bytes qualifier = 2;
 	
 	required string indexType = 3;
 	repeated bytes arguments = 4;
+	
+	repeated ProtoColumn column = 5;
+	optional bool isMultiColumns = 6;
 }
 
 message IndexCoprocessorCreateResponse {
@@ -22,6 +25,9 @@ message IndexCoprocessorCreateResponse {
 message IndexCoprocessorDeleteRequest{
 	required bytes family = 1;
 	required bytes qualifier = 2;
+
+	repeated ProtoColumn column = 3;
+	optional bool isMultiColumns = 4;
 }
 
 message IndexCoprocessorDeleteResponse{
@@ -31,6 +37,7 @@ message IndexCoprocessorDeleteResponse{
 message IndexedQueryRequest {
 	repeated ProtoColumn column = 1;
 	required ProtoCriteriaList criteriaList = 2;
+	optional bool isMultiColumns = 3;
 }
 
 message IndexedQueryResponse {

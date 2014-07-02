@@ -7,6 +7,7 @@ public class IndexedColumnQuery {
     private List<Criterion<?>> criteriaList;
     private boolean mustPassAllCriteria;
     private List<Column> columnList;
+    private boolean isMultiColumns = false;
     
     public IndexedColumnQuery() {
         criteriaList = new ArrayList<Criterion<?>>();
@@ -35,5 +36,13 @@ public class IndexedColumnQuery {
     
     public boolean isMustPassAllCriteria() {
         return mustPassAllCriteria;
+    }
+    
+    public void setMultiColumns(boolean isMultiCol) {
+    	isMultiColumns = isMultiCol;
+    }
+    
+    public boolean isMultiColumns() {
+    	return isMultiColumns;
     }
 }

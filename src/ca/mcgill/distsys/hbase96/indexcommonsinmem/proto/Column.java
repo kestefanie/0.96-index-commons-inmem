@@ -1,10 +1,20 @@
 package ca.mcgill.distsys.hbase96.indexcommonsinmem.proto;
 
+import java.io.Serializable;
+
 import org.apache.hadoop.hbase.util.Bytes;
 
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.Util;
 
-public class Column implements Comparable<Column> {
+public class Column implements Comparable<Column> , Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -83906511023166410L;
+	/**
+	 * 
+	 */
+	
 	private byte[] family;
 	private byte[] qualifier;
 
