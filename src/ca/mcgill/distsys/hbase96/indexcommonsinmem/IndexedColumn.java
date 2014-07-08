@@ -55,9 +55,7 @@ public class IndexedColumn implements Serializable {
 			return false;
 		}
 		if (obj instanceof IndexedColumn) {
-			IndexedColumn col = (IndexedColumn) obj;
-			if(Util.concatColumnsToString(colList).equals(
-					Util.concatColumnsToString(col.getColumnList()))) {
+			if(toString().equals(((IndexedColumn) obj).toString())) {
 				return true;
 			} else {
 				return false;
@@ -68,7 +66,7 @@ public class IndexedColumn implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Arrays.hashCode(Bytes.toBytes(Util.concatColumnsToString(colList)));
+		return Arrays.hashCode(Bytes.toBytes(toString()));
 	}
 
 }
