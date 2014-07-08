@@ -1,7 +1,10 @@
 package ca.mcgill.distsys.hbase96.indexcommonsinmem;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
+
+import org.apache.hadoop.hbase.util.Bytes;
 
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.Column;
 
@@ -45,4 +48,27 @@ public class IndexedColumn implements Serializable {
 	public String toString() {
 		return Util.concatColumnsToString(colList);
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) {
+			return false;
+		}
+		if (obj instanceof IndexedColumn) {
+			IndexedColumn col = (IndexedColumn) obj;
+			if(Util.concatColumnsToString(colList).equals(
+					Util.concatColumnsToString(col.getColumnList()))) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(Bytes.toBytes(Util.concatColumnsToString(colList)));
+	}
+
 }
