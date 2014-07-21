@@ -1,9 +1,11 @@
 package ca.mcgill.distsys.hbase96.indexcommonsinmem.proto;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 import org.apache.hadoop.hbase.util.Bytes;
 
+import ca.mcgill.distsys.hbase96.indexcommonsinmem.IndexedColumn;
 import ca.mcgill.distsys.hbase96.indexcommonsinmem.Util;
 
 public class Column implements Comparable<Column>, Serializable {
@@ -74,5 +76,25 @@ public class Column implements Comparable<Column>, Serializable {
 			string = string + Bytes.toString(qualifier);
 		}
 		return string;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) {
+			return false;
+		}
+		if (obj instanceof Column) {
+			if(toString().equals(((Column) obj).toString())) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(Bytes.toBytes(toString()));
 	}
 }
