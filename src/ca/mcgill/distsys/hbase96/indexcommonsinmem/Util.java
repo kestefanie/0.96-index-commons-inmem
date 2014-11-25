@@ -34,12 +34,21 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Util {
 
 	private static final Log LOG = LogFactory.getLog(Util.class);
 
+	
+	public static void main(String [] args) {
+		
+		List<Column> colList = Util.buildColumnList("cf:;cf:b;cf:c;");
+		System.out.println(colList.toString());
+	}
+	
+	
 	// Added by Cong
 	// Serialize object to byte array
 	public static byte[] serialize(Object obj) throws IOException {
@@ -345,6 +354,21 @@ public class Util {
 		return concatColumns;
 	}
 
+	public static List<Column> buildColumnList(String str) {
+		List<Column> colList = new ArrayList<Column>();
+		String [] strColumn = null;
+		String [] strList = str.split(";");
+		for(int i = 0; i < strList.length; i++){
+			strColumn = strList[i].split(":");
+			if(strColumn.length == 1) {
+				colList.add(new Column(Bytes.toBytes(strColumn[0])));
+			} else {
+				colList.add(new Column(Bytes.toBytes(strColumn[0]), Bytes.toBytes(strColumn[1])));
+			}
+		}
+		return colList;
+	}
+	
 	public static List<Column> buildColumnList(List<ProtoColumn> protoColumnList) {
 		List<Column> colList = new ArrayList<Column>();
 		Column queryColumn = null;
