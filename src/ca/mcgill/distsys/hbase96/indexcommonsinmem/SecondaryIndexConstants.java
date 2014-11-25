@@ -1,5 +1,8 @@
 package ca.mcgill.distsys.hbase96.indexcommonsinmem;
 
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
+
 public class SecondaryIndexConstants {
     /**
      * Name of the master index table that contains which columns are indexed for which tables.
@@ -16,9 +19,6 @@ public class SecondaryIndexConstants {
     
     public static final int PRIMARYKEY_TREE_MAX_SIZE_DEFAULT = Integer.MAX_VALUE;
     
-    public static final String INDEX_COPROCESSOR_BINDADDR = "indexCoprocessor.bindaddr";
-    public static final String INDEX_COPROCESSOR_REGIONSERVER_HOSTS = "indexCoprocessor.regionserver_hosts";
-
     public static final String PLUGGABLE_INDEX_NAMESPACE =
         "ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.pluggableIndex";
 
@@ -29,4 +29,15 @@ public class SecondaryIndexConstants {
         PLUGGABLE_INDEX_NAMESPACE + ".hybridBased.HybridIndex";
 
     public static final String DEFAULT_INDEX = HYBRID_INDEX;
+
+    // Yousuf
+    // Configuration
+    public static final Configuration CONF;
+    static { CONF = HBaseConfiguration.create(); }
+
+    public static boolean SORT_INDEXED_QUERY_RESULTS;
+    static {
+      SORT_INDEXED_QUERY_RESULTS = CONF.getBoolean("hbase.client.index.scanner.sort", true);
+    }
+    //
 }
