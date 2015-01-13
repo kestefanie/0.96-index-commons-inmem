@@ -1,4 +1,4 @@
-package ca.mcgill.distsys.hbase96.indexcommonsinmem;
+package ca.mcgill.distsys.hbase96.indexcommons;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.apache.hadoop.hbase.util.Bytes;
 
-import ca.mcgill.distsys.hbase96.indexcommonsinmem.proto.Column;
+import ca.mcgill.distsys.hbase96.indexcommons.proto.Column;
 
 public class IndexedColumn implements Serializable {
 
@@ -20,7 +20,7 @@ public class IndexedColumn implements Serializable {
 	public IndexedColumn(List<Column> colList) {
 		this.colList = colList;
 		// set default index type and arguments
-		//indexType = "ca.mcgill.distsys.hbase96.indexcoprocessorsinmem.pluggableIndex.hybridBased.HybridIndex";
+		//indexType = "ca.mcgill.distsys.hbase96.indexcoprocessors.inmem.pluggableIndex.hybridBased.HybridIndex";
 		//arguments = new Object[] {columnFamily, qualifier};
 	}
 

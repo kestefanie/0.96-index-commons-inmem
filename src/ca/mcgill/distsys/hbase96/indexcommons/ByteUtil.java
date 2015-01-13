@@ -1,4 +1,4 @@
-package ca.mcgill.distsys.hbase96.indexcommonsinmem;
+package ca.mcgill.distsys.hbase96.indexcommons;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;

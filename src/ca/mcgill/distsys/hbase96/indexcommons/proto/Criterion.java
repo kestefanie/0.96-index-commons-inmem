@@ -1,4 +1,4 @@
-package ca.mcgill.distsys.hbase96.indexcommonsinmem.proto;
+package ca.mcgill.distsys.hbase96.indexcommons.proto;
 
 import java.util.Set;
 
