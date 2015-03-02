@@ -338,7 +338,7 @@ public class Util {
       throw new RuntimeException(e);
     }
 
-    LOG.debug("Util.class: " + requestCompareType);
+    LOG.trace("Util.class: " + requestCompareType);
 
     switch (requestCompareType) {
       case EQUAL:

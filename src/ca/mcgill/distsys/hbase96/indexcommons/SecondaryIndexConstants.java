@@ -31,7 +31,10 @@ public class SecondaryIndexConstants {
     public static final String HYBRID_INDEX =
         PLUGGABLE_INDEX_NAMESPACE + ".hybridBased.HybridIndex";
 
-    public static final String DEFAULT_INDEX = HYBRID_INDEX;
+  public static final String HYBRID_INDEX2 =
+      PLUGGABLE_INDEX_NAMESPACE + ".hybridBased2.HybridIndex";
+
+  public static final String DEFAULT_INDEX = HYBRID_INDEX;
 
     // Yousuf
     // Configuration
