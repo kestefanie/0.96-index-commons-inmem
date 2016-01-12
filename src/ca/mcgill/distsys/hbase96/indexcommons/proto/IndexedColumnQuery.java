@@ -1,7 +1,6 @@
 package ca.mcgill.distsys.hbase96.indexcommons.proto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class IndexedColumnQuery {
