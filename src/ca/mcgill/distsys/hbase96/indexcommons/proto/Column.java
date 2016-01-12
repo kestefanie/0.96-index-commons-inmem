@@ -1,11 +1,11 @@
-package ca.mcgill.distsys.hbase96.indexcommonsinmem.proto;
+package ca.mcgill.distsys.hbase96.indexcommons.proto;
 
 import java.io.Serializable;
 import java.util.Arrays;
 
 import org.apache.hadoop.hbase.util.Bytes;
 
-import ca.mcgill.distsys.hbase96.indexcommonsinmem.Util;
+import ca.mcgill.distsys.hbase96.indexcommons.Util;
 
 public class Column implements Comparable<Column>, Serializable {
 	/**
@@ -54,12 +54,12 @@ public class Column implements Comparable<Column>, Serializable {
 
 	public byte[] getConcatByteArray() {
 		if (qualifier == null) {
-			return Util.concatByteArray(this.family, Bytes.toBytes(":"));
+			return Util.concatByteArray(this.family, Bytes.toBytes("."));
 
 		} else {
 			return Util.concatByteArray(
-					Util.concatByteArray(this.family, Bytes.toBytes(":")),
-					this.qualifier);
+					Util.concatByteArray(this.family, Bytes.toBytes(".")),
+					    this.qualifier);
 		}
 	}
 
@@ -70,7 +70,7 @@ public class Column implements Comparable<Column>, Serializable {
 
 	@Override
 	public String toString() {
-		String string = Bytes.toString(family) + ":";
+		String string = Bytes.toString(family) + ".";
 		if (qualifier != null) {
 			string = string + Bytes.toString(qualifier);
 		}

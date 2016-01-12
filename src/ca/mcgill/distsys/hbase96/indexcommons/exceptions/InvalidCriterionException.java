@@ -1,4 +1,4 @@
-package ca.mcgill.distsys.hbase96.indexcommonsinmem.exceptions;
+package ca.mcgill.distsys.hbase96.indexcommons.exceptions;
 
 public class InvalidCriterionException extends InvalidQueryException {
     private static final long serialVersionUID = 1804716158410102667L;

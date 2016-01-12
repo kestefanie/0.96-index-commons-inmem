@@ -1,4 +1,4 @@
-package ca.mcgill.distsys.hbase96.indexcommonsinmem.exceptions;
+package ca.mcgill.distsys.hbase96.indexcommons.exceptions;
 
 import java.io.IOException;
 

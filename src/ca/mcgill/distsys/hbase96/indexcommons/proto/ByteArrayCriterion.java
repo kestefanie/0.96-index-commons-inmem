@@ -1,4 +1,4 @@
-package ca.mcgill.distsys.hbase96.indexcommonsinmem.proto;
+package ca.mcgill.distsys.hbase96.indexcommons.proto;
 
 import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp;
 import org.apache.hadoop.hbase.filter.Filter;
